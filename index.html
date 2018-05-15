@@ -1,19 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>TipsNote : GitHub Pages Sample</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/marx/2.0.4/marx.css">
+    <meta charset="utf-8">
+    <title>備品管理アプリ</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="plugins/plugin-loader.js"></script>
+    <script src="components/loader.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-<main>
-  <h1>GitHub Pages のサンプルです</h1>
-  <a href="http://www.tam-tam.co.jp/tipsnote/"><button>TipsNote に戻る</button></a>
-</main>
-
-<script>
-console.log('GitHub Pages Sample');
-</script>
+    <div class="content">
+        <div class="tab_wrap">
+            <input id="tab1" type="radio" name="tab_btn" checked>
+            <input id="tab2" type="radio" name="tab_btn">
+            <input id="tab3" type="radio" name="tab_btn">
+            <div class="tab_area">
+                <label class="tab2_label" for="tab2">設定</label>
+                <label class="tab3_label" for="tab3">ヘルプ</label>
+                <label class="tab1_label main_label" for="tab1">メイン</label>
+            </div>
+            <div class="panel_area">
+                <div id="panel1" class="tab_panel">
+                    <button id="ScanButton" type="button">スキャンする</button>
+                    <br>
+                    <p id="ResultMessage"></p>
+                    <div class="margin-top">
+                        <label class="label">借人</label>
+                        <div class="margin-bottom">
+                            <p class="control">
+                                <span class="select has-text-centered">
+                                    <select id="nameData"></select>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="container">
+                        <selet id="sel1" class="usersell">
+                            </select>
+                            <button id="borrowButton" class="borrowbutton" type="button">借りる</button>
+                            <button id="returnButton" class="returnbutton" type="button">返す</button>
+                    </div>
+                    <div id="info"></div>
+                </div>
+                <div id="panel2" class="tab_panel">
+                    <div>
+                        <p>スペースID</p>
+                        <input type="text" id="space-id" placeholder="your_space_id" />
+                        <p>ApiKey</p>
+                        <input type="text" id="api-key" placeholder="your_api_key" />
+                        <p>借人検索範囲(正規表現)</p>
+                        <input type="text" id="name-search-range" placeholder="/^a/" />
+                    </div>
+                    <button id="setting-complete" class="margin-top">設定変更</button>
+                </div>
+                <div id="panel3" class="tab_panel">
+                  <div class="margin-top" style="text-align: left;">
+                        <h3>どんなアプリ？</h3>
+                        <span>BackLogとQRコードを組み合わせた備品管理アプリです。</span>
+                        <h3>前準備</h3>
+                        <span>1.BackLogに課題を用意</span><br>
+                        <span>・管理する備品をBackLogの課題として登録します。</span><br>
+                        <span>2.QRコードを用意</span><br>
+                        <span>・各種外部サービスを利用しQRコードを作成します。<br>
+                            {<br>
+                              "issue":"item_issue_id",<br>
+                              "name":"item_name",<br>
+                              "id":"item_to_distinguish"<br>
+                              }<br>
+                              という文字列でQLコードを作成します。
+                        </span><br>
+                        <span>3.設定画面の値をセット</span><br>
+                        <span>・ スペースID,ApiKeyの登録を行います。<br>
+                        ApiKeyはBackLogのマイページから取得することが可能です。</span><br>
+                        <span>・借人検索範囲(正規表現)に関しては正規表現を入力することでリストに出てくる検索範囲を絞ることが可能です。
+                        <br>正規表現はメールアドレスに対して適用されます。
+                        <br> 入力例)gmail
+                        </span>
+                        <h3>使い方</h3>
+                        <span>1.【スキャンする】をタップしてQRコードを読み取ります。</span><br>
+                        <span>2.セレクトボックスから借人を選択します。<span><br>
+                        <span>3.【借りる】or【返す】をタップして借りたり返したりします。<span><br>   
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
 </body>
+
 </html>
