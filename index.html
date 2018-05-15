@@ -2,11 +2,12 @@
 <html>
 
 <head>
+    <link rel="manifest" href="/manifest.json">
     <meta charset="utf-8">
     <title>備品管理アプリ</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-            <!-- いったん削除
+    <!-- いったん削除
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="plugins/plugin-loader.js"></script>
     <script src="components/loader.js"></script>
@@ -14,11 +15,13 @@
     <script>
         // service workerが有効なら、service-worker.js を登録します
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('./service-worker.js').then(function() { console.log('Service Worker Registered'); });
-       }
-      </script>
+            navigator.serviceWorker.register('./service-worker.js').then(function () { console.log('Service Worker Registered'); });
+        }
+    </script>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="content">
         <div class="tab_wrap">
@@ -41,7 +44,7 @@
                             <p class="control">
                                 <span class="select has-text-centered">
                                     <select id="nameData"></select>
-                                    </span>
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -65,33 +68,45 @@
                     <button id="setting-complete" class="margin-top">設定変更</button>
                 </div>
                 <div id="panel3" class="tab_panel">
-                  <div class="margin-top" style="text-align: left;">
+                    <div class="margin-top" style="text-align: left;">
                         <h3>どんなアプリ？</h3>
                         <span>BackLogとQRコードを組み合わせた備品管理アプリです。</span>
                         <h3>前準備</h3>
-                        <span>1.BackLogに課題を用意</span><br>
-                        <span>・管理する備品をBackLogの課題として登録します。</span><br>
-                        <span>2.QRコードを用意</span><br>
-                        <span>・各種外部サービスを利用しQRコードを作成します。<br>
-                            {<br>
-                              "issue":"item_issue_id",<br>
-                              "name":"item_name",<br>
-                              "id":"item_to_distinguish"<br>
-                              }<br>
-                              という文字列でQLコードを作成します。
-                        </span><br>
-                        <span>3.設定画面の値をセット</span><br>
-                        <span>・ スペースID,ApiKeyの登録を行います。<br>
-                        ApiKeyはBackLogのマイページから取得することが可能です。</span><br>
+                        <span>1.BackLogに課題を用意</span>
+                        <br>
+                        <span>・管理する備品をBackLogの課題として登録します。</span>
+                        <br>
+                        <span>2.QRコードを用意</span>
+                        <br>
+                        <span>・各種外部サービスを利用しQRコードを作成します。
+                            <br> {
+                            <br> "issue":"item_issue_id",
+                            <br> "name":"item_name",
+                            <br> "id":"item_to_distinguish"
+                            <br> }
+                            <br> という文字列でQLコードを作成します。
+                        </span>
+                        <br>
+                        <span>3.設定画面の値をセット</span>
+                        <br>
+                        <span>・ スペースID,ApiKeyの登録を行います。
+                            <br> ApiKeyはBackLogのマイページから取得することが可能です。
+                        </span>
+                        <br>
                         <span>・借人検索範囲(正規表現)に関しては正規表現を入力することでリストに出てくる検索範囲を絞ることが可能です。
-                        <br>正規表現はメールアドレスに対して適用されます。
-                        <br> 入力例)gmail
+                            <br>正規表現はメールアドレスに対して適用されます。
+                            <br> 入力例)gmail
                         </span>
                         <h3>使い方</h3>
-                        <span>1.【スキャンする】をタップしてQRコードを読み取ります。</span><br>
-                        <span>2.セレクトボックスから借人を選択します。<span><br>
-                        <span>3.【借りる】or【返す】をタップして借りたり返したりします。<span><br>   
-                  </div>
+                        <span>1.【スキャンする】をタップしてQRコードを読み取ります。</span>
+                        <br>
+                        <span>2.セレクトボックスから借人を選択します。
+                            <span>
+                                <br>
+                                <span>3.【借りる】or【返す】をタップして借りたり返したりします。
+                                    <span>
+                                        <br>
+                    </div>
                 </div>
             </div>
         </div>
