@@ -7,10 +7,10 @@ $(function() {
   }
    setSetting();
   // 「スキャンする」を押したときのイベント
-  $("#ScanButton").click(function() {
+  /*$("#ScanButton").click(function() {
     scanBarcode();
     return false;
-  });
+  });*/
   
     $("#returnButton").click(function() {
         if($("#ResultMessage").text()){
@@ -47,31 +47,36 @@ $(function() {
 });
  
 // 「スキャンする」を押したときに実行される関数
-function scanBarcode() {
-  // BarcodeScannerプラグインを利用してスキャン
-  window.plugins.barcodeScanner.scan(
-    // 成功時に実行されるコールバック（キャンセル時も含む）
-    function(result) {
-      // キャンセルされたら何もしない
-      if (result.cancelled) {
-        return;
-      }
-      
-      // 結果テキストを表示
-      $("#ResultMessage").text(result.text);
-      
-      // URLなら「ブラウザで開く」ボタンを表示
-      if (result.text.indexOf("http") === 0) {
-        $("#BrowserOpenButton").show();
+/*function scanBarcode() {
+  var reader = new FileReader();
+  reader.onload = function() {
+    node.value = "";
+    qrcode.callback = function(res) {
+      if(res instanceof Error) {
+        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
       } else {
-        $("#BrowserOpenButton").hide();
+        node.parentNode.previousElementSibling.value = res;
       }
-    },
-    // エラー時に実行されるコールバック
-    function(error) {
-      $("#ResultMessage").text(error);
-    }
-  );
+    };
+    qrcode.decode(reader.result);
+  };
+  reader.readAsDataURL(node.files[0]);
+}*/
+
+function openQRCamera(node) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    node.value = "";
+    qrcode.callback = function(res) {
+      if(res instanceof Error) {
+        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+      } else {
+        node.parentNode.previousElementSibling.value = res;
+      }
+    };
+    qrcode.decode(reader.result);
+  };
+  reader.readAsDataURL(node.files[0]);
 }
 
 function getUserList(){

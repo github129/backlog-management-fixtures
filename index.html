@@ -5,8 +5,8 @@
     <link rel="manifest" href="./manifest.json">
     <meta charset="utf-8">
     <title>備品管理アプリ</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
     <!-- いったん削除
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="plugins/plugin-loader.js"></script>
@@ -35,7 +35,13 @@
             </div>
             <div class="panel_area">
                 <div id="panel1" class="tab_panel">
-                    <button id="ScanButton" type="button">スキャンする</button>
+                        <input type=file
+                        accept="image/*"
+                        capture=environment
+                        onchange="openQRCamera(this);"
+                        tabindex=-1
+                        id="ScanButton" value="スキャンする">
+                    <!--<button id="ScanButton" type="button" onchange="openQRCamera(this);" ></button>-->
                     <br>
                     <p id="ResultMessage"></p>
                     <div class="margin-top">
