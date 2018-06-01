@@ -7,24 +7,196 @@
     <title>備品管理アプリ</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
-    <script src="js/qr/grid.js"></script>
-    <script src="js/qr/version.js"></script>
-    <script src="js/qr/detector.js"></script>
-    <script src="js/qr/formatinf.js"></script>
-    <script src="js/qr/errorlevel.js"></script>
-    <script src="js/qr/bitmat.js"></script>
-    <script src="js/qr/datablock.js"></script>
-    <script src="js/qr/bmparser.js"></script>
-    <script src="js/qr/datamask.js"></script>
-    <script src="js/qr/rsdecoder.js"></script>
-    <script src="js/qr/gf256poly.js"></script>
-    <script src="js/qr/gf256.js"></script>
-    <script src="js/qr/decoder.js"></script>
-    <script src="js/qr/QRCode.js"></script>
-    <script src="js/qr/findpat.js"></script>
-    <script src="js/qr/alignpat.js"></script>
-    <script src="js/qr/databr.js"></script>
-    <script src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="./js/qr/megapix-image.js"></script>
+    <script src="./js/qr/grid.js"></script>
+    <script src="./js/qr/version.js"></script>
+    <script src="./js/qr/detector.js"></script>
+    <script src="./js/qr/formatinf.js"></script>
+    <script src="./js/qr/errorlevel.js"></script>
+    <script src="./js/qr/bitmat.js"></script>
+    <script src="./js/qr/datablock.js"></script>
+    <script src="./js/qr/bmparser.js"></script>
+    <script src="./js/qr/datamask.js"></script>
+    <script src="./js/qr/rsdecoder.js"></script>
+    <script src="./js/qr/gf256poly.js"></script>
+    <script src="./js/qr/gf256.js"></script>
+    <script src="./js/qr/decoder.js"></script>
+    <script src="./js/qr/qrCode.js"></script>
+    <script src="./js/qr/findpat.js"></script>
+    <script src="./js/qr/alignpat.js"></script>
+    <script src="./js/qr/databr.js"></script>
+
+    <style type="text/css">
+        html, body {
+            font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+            font-size: 14px;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        body{
+            background: #f4f3f3;
+            color: #2c2c2c;
+            letter-spacing: 0.025em;
+            line-height: 1.5;
+        }
+        a {
+            color: #2c2c2c;
+            text-decoration: none;
+        }
+        ul li,
+        ol li {
+            list-style: none;
+        }
+        header {
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.33rem;
+        }
+        nav {
+            margin-bottom: 30px;
+        }
+        nav ul {
+            text-align: center;
+        }
+        ul li {
+            display: inline-block;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        ul li a {
+            display: inline-block;
+        }
+        ul li a.active {
+            border-bottom: solid 2px #5e9bff;
+            color: #5e9bff;
+        }
+        main {
+            display: block;
+            max-width: 480px;
+            height: 400px;
+            margin: 30px auto 60px;
+            text-align: center;
+            position: relative;
+            -moz-perspective: 2000;
+            -webkit-perspective: 2000;
+            -ms-perspective: 2000;
+            perspective: 2000;
+        }
+        .wrapper {
+            height: 100%;
+            margin-bottom: 15px;
+            position: relative;
+            -webkit-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+        }
+        .wrapper.animate {
+            -webkit-transition: 0.5s linear;
+            -ms-transition: 0.5s linear;
+            transition: 0.5s linear;
+            -webkit-transform: rotateY(90deg);
+            -ms-transform: rotateY(90deg);
+            transform: rotateY(90deg);
+        }
+        .wrapper.animateEnd {
+            -webkit-transition: 0.5s linear;
+            -ms-transition: 0.5s linear;
+            transition: 0.5s linear;
+            -webkit-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
+        section {
+            display: table;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            visibility: hidden;
+            z-index: 1;
+        }
+        section.animate {
+            visibility: visible;
+            z-index: 1;
+        }
+        section.active {
+            visibility: visible;
+            z-index: 2;
+        }
+        .wrapper.animateEnd section.active {
+            -webkit-transform: scale(-1, 1);
+            -ms-transform: scale(-1, 1);
+            transform: scale(-1, 1);
+        }
+        section:first-of-type {
+            background: #5e9bff;
+        }
+        section:nth-of-type(2) {
+            background: #66c6db;
+        }
+        section:nth-of-type(3) {
+            background: #70c4af;
+        }
+        section:nth-of-type(4) {
+            background: #70c480;
+        }
+        section:nth-of-type(5) {
+            background: #9dc470;
+        }
+        section div {
+            display: table-cell;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+        }
+        section h2 {
+            margin-bottom: 20px;
+        }
+        section figure canvas {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+        }
+        section p {
+            max-width: 320px;
+            padding: 0 15px;
+            margin: 5px auto;
+            text-align: left;
+        }
+        
+        
+        
+        footer {
+            text-align: center;
+        }
+        
+        
+        
+        @media only screen and (max-width: 959px) {
+        
+        html, body {
+            font-size: 10px;
+        }
+        main {
+            margin-top: 0;
+            padding: 30px 15px;
+        }
+        ul li {
+            margin: 0 5px;
+        }
+        
+        }
+        </style>
     <!-- いったん削除
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="plugins/plugin-loader.js"></script>
@@ -53,16 +225,10 @@
             </div>
             <div class="panel_area">
                 <div id="panel1" class="tab_panel">
-                        <input type=file
-                        accept="image/*"
-                        capture=environment
-                        onchange="openQRCamera(this);"
-                        tabindex=-1
-                        id="ScanButton" value="スキャンする">
+                        <input type="file" id="uploadFile" name="image" accept="image/*" value="スキャンする">
                     <!--<button id="ScanButton" type="button" onchange="openQRCamera(this);" ></button>-->
                     <br>
                     <p id="ResultMessage"></p>
-                    <p id="result"></p>
                     <div class="margin-top">
                         <label class="label">借人</label>
                         <div class="margin-bottom">
@@ -78,20 +244,23 @@
                             </select>
                             <button id="borrowButton" class="borrowbutton" type="button">借りる</button>
                             <button id="returnButton" class="returnbutton" type="button">返す</button>
-                    </div>
-                    <div id="info"></div>
+                    </div>                    
                     <div id="contents">
-                        <form>
-                      下のボタンからQRコードの画像の選択、もしくはカメラ撮影を行って下さい。<br>
-                      <span class="note">※英数字のデータを含んだもののみ対応(日本語が含まれたデータには非対応)</span><br>
-                          <input type="file" id="file" ><br>
-                        </form>
-                        <p id="result_block">【読み込み結果】
-                        <p id="result"></p>
-                        <p id="info"></p>
-                        </p>
-                        <canvas id="qr-canvas"></canvas>
-                      </div>
+                    <div class="wrapper">
+                        <section id="page1" class="active">
+                            <div>
+                                <h2>↓↓ファイルを選択から操作して下さい↓↓</h2>
+                                <p>QRコードの画像を直接選択するか、<br>
+                                カメラからQRコードを撮影して下さい<br>
+                                (できるだけ大きく撮影して下さい)</p>
+                                <figure id="drawArea">
+                                    <canvas id="canvas" width="300" height="300"></canvas>
+                                </figure>
+                                <p id="info"></p>
+                            </div>
+                        </section>
+                    </div>
+                  </div>
                       
                 </div>
                 <div id="panel2" class="tab_panel">
