@@ -93,6 +93,9 @@ function getUserList(){
               if(localStorage.getItem('name_search_range')){
                 reg = new RegExp(localStorage.getItem('name_search_range'));
                   for(var i in json) {
+                    if(i === 0){
+                      $("#nameData").append('<option value="">選択してください</option>');
+                    }
                     if(reg.test(json[i].mailAddress)){
                       $("#nameData").append("<option value=" +json[i].id + ">" + json[i].name +  "</option>");
                     }
